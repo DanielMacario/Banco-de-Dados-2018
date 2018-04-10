@@ -1,0 +1,21 @@
+create database lancamento;
+
+use lancamento;
+
+create table pessoas (id bigint primary key auto_increment, nome varchar(255)not null, ativo tinyint not null);
+create table contatos ( id bigint primary key auto_increment, nome varchar (100)not null, 
+                        email varchar(100)not null unique, telefone varchar(20)not null);
+create table categorias(id bigint primary key auto_increment, descricao varchar(10)not null);
+create table estados ( sigla varchar(2) primary key, nome varchar(100) not null);
+create table cidades ( id bigint primary key auto_increment, nome varchar(100) not null, estado_sigla varchar(2), 
+                       foreign key (estado_sigla) references estados(sigla));
+create table enderecos ( pessoa_id bigint primary key, logradouro varchar(255)not null, numero varchar(15) not null, 
+                         bairro varchar(100) not null, cep varchar(10) not null, cidade_id bigint, foreign key (pessoa_id) references pessoas(id), 
+                         foreign key (cidade_id) references cidades(id));
+create table lancamentos(id bigint primary key auto_increment, descricao varchar(255) not null, 
+                         dt_vencimento date not null, dt_pagamento date, valor decimal(10,2) unsigned not null,
+                         observacao varchar(255), tipo enum('RECEITA','DESPESA') not null, pessoa_id bigint, categoria_id bigint, 
+                         foreign key (pessoa_id) references pessoas(id) on delete no action on update no action, foreign key (categoria_id) references categorias(id));
+
+alter table contatos add column pessoa_id bigint;
+alter table contatos add constraint fk_pessoa_id foreign key (pessoa_id) references pessoas(id);
