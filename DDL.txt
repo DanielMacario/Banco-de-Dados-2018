@@ -19,3 +19,28 @@ create table lancamentos(id bigint primary key auto_increment, descricao varchar
 
 alter table contatos add column pessoa_id bigint;
 alter table contatos add constraint fk_pessoa_id foreign key (pessoa_id) references pessoas(id);
+
+alter table pessoas add cpf varchar(15) not null;
+alter table contatos add pessoa_cpf varchar(15) not null;
+alter table contatos drop foreign key fk_pessoa_id;
+alter table enderecos drop foreign key enderecos_ibfk_1;
+alter table lancamentos drop foreign key lancamentos_ibfk_1;
+alter table pessoas add primary key(cpf);
+alter table contatos add constraint fk_pessoa_cpf foreign key (pessoa_cpf) references pessoas(cpf);
+alter table pessoas drop primary key, change id id bigint not null;
+update pessoas set cpf = '123.123.123-12' where id=1;
+update pessoas set cpf = '321.321.321-32' where id=2;
+update pessoas set cpf = '919.191.919-19' where id=3;
+update pessoas set cpf = '001.002.003-54' where id=4;
+update pessoas set cpf = '055.362.999-43' where id=5;
+update contatos c inner join pessoas p on c.pessoas_id = p.id set c.pessoa_cpf = pessoa.cpf;
+alter table contatos drop primary key, change id id bigint not null;
+alter table contatos add primary key(id, pessoa_cpf);
+alter table contatos drop pessoa_id;
+alter table lancamentos add pessoa_cpf varchar(15)not null;
+update lancamentos l inner join pessoas p on l.pessoa_id = p.id set l.pessoa_cpf = p.cpf;
+alter table enderecos add pessoa_cpf varchar(15)not null;
+update enderecos e inner join pessoas p on e.pessoa_id = p.id set e.pessoa_cpf = p.cpf;
+alter table enderecos drop primary key, change pessoa_id pessoa_id bigint not null;
+alter table enderecos add primary key(pessoa_cpf);
+alter table enderecos add primary key(pessoa_cpf);
