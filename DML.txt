@@ -7,11 +7,11 @@ insert into pessoas (nome, ativo) values ('Henrique Fagundes', true);
 insert into estados (sigla,nome) values ('BA', 'Bahia');
 insert into estados (sigla,nome) values ('SP', 'Sao Paulo');
 insert into estados (sigla,nome) values  ('MT', 'Mato Grosso');
-insert into estados (sigla,nome) values ('Pa', 'Par·');
+insert into estados (sigla,nome) values ('Pa', 'Par√°');
 insert into estados (sigla,nome) values ('RS', 'Rio Grande do Sul');
 
 insert into cidades (nome, estado_sigla) values ('Vitoria da Conquista', 'BA');
-insert into cidades (nome, estado_sigla) values  ('Cuiab·', 'MT');
+insert into cidades (nome, estado_sigla) values  ('Cuiab√°', 'MT');
 insert into cidades (nome, estado_sigla) values ('Parazinho' , 'Pa');
 insert into cidades (nome, estado_sigla) values ('Rio_Grande_do_Sul', 'RS');
 insert into cidades (nome, estado_sigla) values ('Sao Paulo','SP');
@@ -109,4 +109,10 @@ insert into lancamentos ( descricao, dt_vencimento, dt_pagamento, valor, observa
 insert into lancamentos ( descricao, dt_vencimento, dt_pagamento, valor, observacao, tipo, pessoa_id, categoria_id) values ( 'Conta', '2018-12-06','2018-12-13',80.00,null, 'Despesa', 5, 2); 
 insert into lancamentos ( descricao, dt_vencimento, dt_pagamento, valor, observacao, tipo, pessoa_id, categoria_id) values ( 'Conta', '2018-12-10', '2018-12-13' ,750.00,null, 'Despesa', 5, 3); 
 insert into lancamentos ( descricao, dt_vencimento, dt_pagamento, valor, observacao, tipo, pessoa_id, categoria_id) values ( 'Conta', '2018-12-25','2018-12-13' ,125.00,null, 'Despesa', 5, 4); 
-insert into lancamentos ( descricao, dt_vencimento, dt_pagamento, valor, observacao, tipo, pessoa_id, categoria_id) values ( 'Conta', '2018-04-22', '2018-04-22' ,300.00,null, 'Despesa', 5, 7)
+insert into lancamentos ( descricao, dt_vencimento, dt_pagamento, valor, observacao, tipo, pessoa_id, categoria_id) values ( 'Conta', '2018-04-22', '2018-04-22' ,300.00,null, 'Despesa', 5, 7);
+
+update pessoas set cpf = '123.123.123-12' where id=1;
+update pessoas set cpf = '321.321.321-32' where id=2;
+update pessoas set cpf = '919.191.919-19' where id=3;
+update pessoas set cpf = '001.002.003-54' where id=4;
+update pessoas set cpf = '055.362.999-43' where id=5;
